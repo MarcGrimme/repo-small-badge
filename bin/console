@@ -11,10 +11,8 @@ require 'simplecov_small_badge'
 # require "pry"
 # Pry.start
 
-# setup the environment
-config = SimpleCovSmallBadge::Configuration.new
 # rubocop:disable Style/GlobalVars
-$image = SimpleCovSmallBadge::Image.new(config)
+$badge = RepoSmallBadge::Image.new(config)
 # rubocop:enable Style/GlobalVars
 
 require 'irb'
