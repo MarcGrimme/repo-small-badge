@@ -42,7 +42,7 @@ module TestRepoSmallBadge
         allow(convert).to receive(:composite)
       end
       allow(convert).to receive(:<<)
-        .with("#{keys[:output_path]}/badge_#{keys[:name]}.png")
+        .with("#{keys[:output_path]}/badge_#{keys[:name]}.svg")
       convert
     end
     # rubocop:enable Metrics/MethodLength, Metrics/AbcSize

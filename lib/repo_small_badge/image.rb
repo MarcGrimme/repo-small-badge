@@ -102,7 +102,7 @@ module RepoSmallBadge
 
     def filename(suffix = '')
       prefix = @config.fetch(:filename_prefix, 'badge')
-      format = @config.fetch(:format, 'png')
+      format = @config.fetch(:format, 'svg')
       "#{output_path}/#{prefix}_#{suffix}.#{format}"
     end
 
