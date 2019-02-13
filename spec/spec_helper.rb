@@ -27,6 +27,9 @@ require 'bundler/setup'
 
 Dir[File.join('./spec/support/*.rb')].each { |f| require f }
 
+SimpleCovSmallBadge.configure do |config|
+  config.format = 'svg'
+end
 RSpec.configure do |config|
   # some (optional) config here
 end
