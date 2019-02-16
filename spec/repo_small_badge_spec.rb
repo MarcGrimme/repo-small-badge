@@ -26,6 +26,12 @@ describe RepoSmallBadge::Image do
           expect(subject.badge('total', 'Total', '100%')).to be_truthy
         end
       end
+
+      context '#config_merge' do
+        it do
+          expect(subject.config_merge(badge_height: 10)[:badge_height]).to eq 10
+        end
+      end
     end
   end
 end
