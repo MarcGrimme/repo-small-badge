@@ -24,6 +24,12 @@ module RepoSmallBadge
       save(filename(name))
     end
 
+    # Updates the configuration settings and overwrites existing ones.
+    # @config the hash that has to be merged.
+    def config_merge(config)
+      @config.merge(config)
+    end
+
     private
 
     def svg_header
