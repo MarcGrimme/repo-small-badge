@@ -1,103 +1,114 @@
 # frozen_string_literal: true
 
-require 'mini_magick'
-
-ImageMagickError = Class.new(StandardError)
+require 'victor'
 
 module RepoSmallBadge
   # :nodoc:
-  class Image
+  class Image < Victor::SVGBase
     # Create new instance.
     # @config is a Hash of configurables. Keys are symbols.
     def initialize(config = {})
-      raise ImageMagicError, 'Imagemagick is not installed on this system.' \
-        unless MiniMagick.imagemagick?
-
       @config = config
-      MiniMagick.logger = Logger.new($stdout, level:
-                                     @config.fetch(:log_level, 'info')
-        .to_sym)
+      super(height: badge_height)
     end
 
     # Creates the badge.
     # @name the suffix for the filename (badge_#{name})
     # @title the title of the badge.
     # @value is the overall value to be written to the right side of the badge.
-    # @state can be either good, bad, unknown
-    #        (background color is determined from it.)
-    def badge(name, title, value, state)
-      MiniMagick::Tool::Convert.new do |convert|
-        convert.gravity('center')
-        convert.background(@config.fetch(:background, 'transparent'))
-        convert.pango(pango(title, value, state))
-        rounded_border? &&
-          rounded_border(convert,
-                         @config.fetch(:rounded_edge_radius, 3))
-        convert << filename(name)
-      end
-      true
+    def badge(name, title, value)
+      svg_header
+      svg_boxes
+      svg_texts(title, value)
+
+      save(filename(name))
     end
 
     private
 
-    # rubocop:disable Lint/Void, Metrics/LineLength, Metrics/MethodLength, Metrics/AbcSize
-    def rounded_border(convert, radius = 3)
-      convert.stack do |stack|
-        stack.clone.+
-        stack.alpha('extract')
-        stack.draw("fill black polygon 0,0 0,#{radius} #{radius},0 fill white circle #{radius},#{radius} #{radius},0")
-        stack.stack do |stack1|
-          stack1.clone.+
-          stack1.flip
-        end
-        stack.compose('Multiply')
-        stack.composite
-        stack.stack do |stack1|
-          stack1.clone.+
-          stack1.flop
-        end
-        stack.compose('Multiply')
-        stack.composite
+    def svg_header
+      element :linearGradient, id: 'smooth', x2: '0', y2: '100%' do
+        element :stop, offset: '0', 'stop-color': '#bbb', 'stop-opacity': '.1'
+        element :stop, offset: '1', 'stop-opacity': '.1'
       end
-      convert.alpha('off')
-      convert.compose('CopyOpacity')
-      convert.composite
-    end
-    # rubocop:enable Lint/Void, Metrics/LineLength, Metrics/MethodLength, Metrics/AbcSize
-
-    def rounded_border?
-      @config.fetch(:rounded_border, true)
     end
 
-    def pango(title, value, state)
-      "#{pango_title(title)}#{pango_value(value, state)}"
+    def svg_boxes
+      middle = badge_width / 2
+
+      svg_rounded_box
+
+      element :g, 'clip-path' => 'url(#round)' do
+        element :rect, height: badge_height, width: middle,
+                       fill: title_background
+        element :rect, x: middle, height: badge_height,
+                       width: middle, fill: value_background
+        element :rect, height: badge_height,
+                       width: badge_width, fill: 'url(#smooth)'
+      end
     end
 
-    def pango_title(suffix)
-      pango_text(title(suffix), @config.fetch(:title_font, 'Helvetica'),
-                 @config.fetch(:title_font_color, 'white'),
-                 @config.fetch(:title_font_size, '16'),
-                 @config.fetch(:title_background, '#595959'))
+    def svg_rounded_box
+      element :clipPath, id: 'round' do
+        element :rect, height: badge_height, width: badge_width,
+                       rx: rounded_edge_radius, fill: background
+      end
     end
 
-    def pango_value(value, state)
-      pango_text " #{value} ",
-                 @config.fetch(:value_font, 'Helvetica-Narrow-Bold'),
-                 @config.fetch(:coverage_font_color, 'white'),
-                 @config.fetch(:coverage_font_size, '16'),
-                 state_background(state)
+    # rubocop:disable Metrics/AbcSize
+    def svg_texts(title, value)
+      middle = badge_width / 2
+
+      element :g, fill: title_color, 'text-anchor': 'middle',
+                  'font-family': font, size: font_size do |_svg|
+        element :text, title(title), x: middle / 2, y: badge_height - 5,
+                                     fill: '#010101', 'fill-opacity': '0.3'
+        element :text, title(title), x: middle / 2, y: badge_height - 6
+        element :text, value, x: middle / 2 + middle, y: badge_height - 5,
+                              fill: '#010101', 'fill-opacity': '0.3'
+        element :text, value, x: middle / 2 + middle, y: badge_height - 6
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
+
+    def value_background
+      @config.fetch(:value_background, '#4c1')
     end
 
-    def pango_text(text, font, font_color, font_size, background)
-      "<span foreground=\"#{font_color}\"
-             background=\"#{background}\"\
-             size=\"#{font_size.to_i * 1000}\"\
-             font=\"#{font}\"\
-        >#{text}</span>"
+    def title_background
+      @config.fetch(:title_background, '#555')
     end
 
-    def state_background(state)
-      @config.fetch(:"value_background_#{state}", 'yellow')
+    def background
+      @config.fetch(:background, '#fff')
+    end
+
+    def title_color
+      @config.fetch(:title_color, '#fff')
+    end
+
+    def font
+      @config.fetch(:font, 'Verdana,sans-serif')
+    end
+
+    def font_size
+      @config.fetch(:font_size, 11).to_s
+    end
+
+    def rounded_edge_radius
+      if @config.fetch(:rounded_border, true)
+        @config.fetch(:rounded_edge_radius, '3')
+      else
+        0
+      end
+    end
+
+    def badge_width
+      @config.fetch(:badge_width, 120).to_i
+    end
+
+    def badge_height
+      @config.fetch(:badge_height, 20).to_i
     end
 
     def filename(suffix = '')
@@ -107,7 +118,12 @@ module RepoSmallBadge
     end
 
     def title(suffix)
-      " #{@config.fetch(:title_prefix, 'badge')} #{suffix} "
+      prefix = @config.fetch(:title_prefix, '')
+      if prefix.to_s.empty?
+        suffix
+      else
+        "#{@config.fetch(:title_prefix, '')} #{suffix}"
+      end
     end
 
     def output_path

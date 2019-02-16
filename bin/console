@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'simplecov_small_badge'
+require 'repo_small_badge'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -12,7 +12,7 @@ require 'simplecov_small_badge'
 # Pry.start
 
 # rubocop:disable Style/GlobalVars
-$badge = RepoSmallBadge::Image.new(config)
+$badge = RepoSmallBadge::Image.new
 # rubocop:enable Style/GlobalVars
 
 require 'irb'

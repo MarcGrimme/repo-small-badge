@@ -16,13 +16,12 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = 'repo-small-badge'
 
-  s.add_dependency 'mini_magick'
+  s.add_dependency 'victor' # create the svg
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'simplecov-small-badge'
-  # s.add_development_dependency 'simplecov-small-badge'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
