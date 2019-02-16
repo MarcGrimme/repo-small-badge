@@ -3,28 +3,27 @@
 require 'spec_helper'
 
 describe RepoSmallBadge::Image do
-  include TestRepoSmallBadge::Mocks
+  include TestRepoSmallBadge
 
   context '#coverage_total' do
     describe '#coverage' do
       it do
-        mock_mini_magick(name: 'total', title: 'badge Total',
-                         color: 'yellow', value: '100',
-                         output_path: '.',
-                         stack: mock_mini_magick_stack)
-        expect(subject.badge('total', 'Total', 100, 'good'))
+        allow(File).to receive(:write)
+          .with('./badge_total.svg', default_svg_string).and_return(true)
+        expect(subject.badge('total', 'Total', '100%'))
           .to be_truthy
       end
 
-      context 'without rounded' do
-        subject { described_class.new(rounded_border: false) }
+      context 'without rounded and width 200 and title' do
+        subject do
+          described_class
+            .new(badge_width: 200, rounded_border: false, title_prefix: 'badge')
+        end
+
         it do
-          mock_mini_magick(name: 'total', title: 'badge Total',
-                           color: 'yellow', value: '100',
-                           rounded_border: false,
-                           output_path: '.',
-                           stack: mock_mini_magick_stack)
-          expect(subject.badge('total', 'Total', 100, 'good')).to be_truthy
+          allow(File).to receive(:write)
+            .with('./badge_total.svg', not_rounded_svg_string).and_return(true)
+          expect(subject.badge('total', 'Total', '100%')).to be_truthy
         end
       end
     end
