@@ -10,7 +10,7 @@ The text place and other configurable can be specified at instance time.
 
 ## Installation
 
-The badge creation is dependent on the [MiniMagic gem](https://github.com/minimagick/minimagick) which requires the [ImageMagick](http://www.imagemagick.org/index.php) software.
+The badge creation is dependent on the [Victor gem](https://github.com/DannyBen/victor) for creating the SVG formatted badge.
 
 It can be installed in your Ruby library or rails app as part of the `Gemfile` as follows.
 
