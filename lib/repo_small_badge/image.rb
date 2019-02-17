@@ -4,12 +4,17 @@ require 'victor'
 
 module RepoSmallBadge
   # :nodoc:
+  # rubocop:disable Metrics/ClassLength
   class Image < Victor::SVGBase
     # Create new instance.
     # @config is a Hash of configurables. Keys are symbols.
     def initialize(config = {})
       @config = config
-      super(height: badge_height)
+      super(template: :html, contentScriptType: 'text/ecmascript',
+            contentStyleType: 'text/css', preserveAspectRatio: 'xMidYMid meet',
+            'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+            xmlns: 'http://www.w3.org/2000/svg', version: '1.0',
+            height: badge_height)
     end
 
     # Creates the badge.
@@ -20,7 +25,6 @@ module RepoSmallBadge
       svg_header
       svg_boxes
       svg_texts(title, value)
-
       save(filename(name))
     end
 
@@ -41,7 +45,6 @@ module RepoSmallBadge
 
     def svg_boxes
       middle = badge_width / 2
-
       svg_rounded_box
 
       element :g, 'clip-path' => 'url(#round)' do
@@ -64,7 +67,6 @@ module RepoSmallBadge
     # rubocop:disable Metrics/AbcSize
     def svg_texts(title, value)
       middle = badge_width / 2
-
       element :g, fill: title_color, 'text-anchor': 'middle',
                   'font-family': font, size: font_size do |_svg|
         element :text, title(title), x: middle / 2, y: badge_height - 5,
@@ -136,4 +138,5 @@ module RepoSmallBadge
       @config.fetch(:output_path, '.')
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

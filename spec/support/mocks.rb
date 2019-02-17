@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
 module TestRepoSmallBadge
-  # rubocop:disable Metrics/MethodLength, Metrics/LineLength, Layout/TrailingWhitespace
+  # rubocop:disable Metrics/MethodLength, Metrics/LineLength
   def default_svg_string
-    %(<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-
-<svg height="20" width="100%" 
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink">
-
+    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.0" height="20" width="100%">
 
 <linearGradient id="smooth" x2="0" y2="100%">
 <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -37,18 +31,11 @@ Total
 100%
 </text>
 </g>
-
 </svg>)
   end
 
   def not_rounded_svg_string
-    %(<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-
-<svg height="20" width="100%" 
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink">
-
+    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.0" height="20" width="100%">
 
 <linearGradient id="smooth" x2="0" y2="100%">
 <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -76,8 +63,7 @@ badge Total
 100%
 </text>
 </g>
-
 </svg>)
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/LineLength, Layout/TrailingWhitespace
+  # rubocop:enable Metrics/MethodLength, Metrics/LineLength
 end
