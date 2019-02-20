@@ -16,7 +16,7 @@ module RepoSmallBadge
             contentStyleType: 'text/css', preserveAspectRatio: 'xMidYMid meet',
             'xmlns:xlink': 'http://www.w3.org/1999/xlink',
             xmlns: 'http://www.w3.org/2000/svg', version: '1.0',
-            height: @config.badge_height)
+            height: @config.badge_height, width: @config.badge_width)
     end
 
     # Creates the badge.
@@ -41,7 +41,7 @@ module RepoSmallBadge
     private
 
     def svg_header
-      element :linearGradient, id: 'smooth', x2: '0', y2: '100%' do
+      element :linearGradient, id: 'smooth', x2: '0', y2: @config.badge_width do
         element :stop, offset: '0', 'stop-color': '#bbb', 'stop-opacity': '.1'
         element :stop, offset: '1', 'stop-opacity': '.1'
       end
