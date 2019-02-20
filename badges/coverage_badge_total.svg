@@ -19,6 +19,8 @@ scov total
 <text x="50" y="14">
 scov total
 </text>
+</g>
+<g fill="#fff" text-anchor="middle" font-family="Helvetica-Narrow-Bold" size="16">
 <text x="150" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
