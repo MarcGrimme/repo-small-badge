@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../../overview.html"><img src="../../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+      
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2019-02-20 17:10:26 +0100'>2019-02-20 17:10:26 +0100</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>lib/repo_small_badge /</small> image.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating b big">
+              B
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">103</span><small> lines of codes</small></div>
+              <div><span class="metric">8</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">12.2</span><small> complexity/method</small></div>
+              <div><span class="metric">7</span><small> churn</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">97.88</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                13
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
+
+require &#39;victor&#39;
+require &#39;repo_small_badge/configuration&#39;
+
+module RepoSmallBadge
+  # Class that creates the Badge SVG image.
+  # Behaviour is defined by the configuration hash.
+  # For the different configurables see RepoSmallBadge::Configuration.
+  class Image &lt; Victor::SVGBase
+    # Create new instance.
+    # @config is a Hash of configurables. Keys are symbols.
+    def initialize(config = {})
+      @config = Configuration.new(config)
+      super(template: :html, contentScriptType: &#39;text/ecmascript&#39;,
+            contentStyleType: &#39;text/css&#39;, preserveAspectRatio: &#39;xMidYMid meet&#39;,
+            &#39;xmlns:xlink&#39;: &#39;http://www.w3.org/1999/xlink&#39;,
+            xmlns: &#39;http://www.w3.org/2000/svg&#39;, version: &#39;1.0&#39;,
+            height: @config.badge_height)
+    end
+
+    # Creates the badge.
+    # @name the suffix for the filename (badge_#{name})
+    # @title the title of the badge.
+    # @value is the overall value to be written to the right side of the badge.
+    def badge(name, title, value)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#badge has approx 6 statements</span>          </div>  </li></ol>
+      svg_header
+      svg_rounded_box
+      svg_boxes
+      svg_title(title)
+      svg_value(value)
+      save(@config.filename(name))
+    end
+
+    # Updates the configuration settings and overwrites existing ones.
+    # @config the hash that has to be merged.
+    def config_merge(config)
+      @config.merge!(config)
+    end
+
+    private
+
+    def svg_header
+      element :linearGradient, id: &#39;smooth&#39;, x2: &#39;0&#39;, y2: &#39;100%&#39; do
+        element :stop, offset: &#39;0&#39;, &#39;stop-color&#39;: &#39;#bbb&#39;, &#39;stop-opacity&#39;: &#39;.1&#39;
+        element :stop, offset: &#39;1&#39;, &#39;stop-opacity&#39;: &#39;.1&#39;
+      end
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def svg_boxes
+      element :g, &#39;clip-path&#39; =&gt; &#39;url(#round)&#39; do
+        element :rect, height: @config.badge_height,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_height' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L53" class="js-smell-location">0</a>                  <a href="image.html#L57" class="js-smell-location">1</a>                  <a href="image.html#L60" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       width: @config.badge_middle,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_middle' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L54" class="js-smell-location">0</a>                  <a href="image.html#L56" class="js-smell-location">1</a>                  <a href="image.html#L58" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       fill: @config.title_background
+        element :rect, x: @config.badge_middle,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_middle' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L54" class="js-smell-location">0</a>                  <a href="image.html#L56" class="js-smell-location">1</a>                  <a href="image.html#L58" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       height: @config.badge_height,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_height' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L53" class="js-smell-location">0</a>                  <a href="image.html#L57" class="js-smell-location">1</a>                  <a href="image.html#L60" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       width: @config.badge_middle,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_middle' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L54" class="js-smell-location">0</a>                  <a href="image.html#L56" class="js-smell-location">1</a>                  <a href="image.html#L58" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       fill: @config.value_background
+        element :rect, height: @config.badge_height,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_boxes calls '@config.badge_height' 3 times</span>              <span>Locations:</span>                  <a href="image.html#L53" class="js-smell-location">0</a>                  <a href="image.html#L57" class="js-smell-location">1</a>                  <a href="image.html#L60" class="js-smell-location">2</a>                  </div>  </li></ol>
+                       width: @config.badge_width, fill: &#39;url(#smooth)&#39;
+      end
+      # rubocop:enable Metrics/MethodLength
+    end
+
+    def svg_rounded_box
+      element :clipPath, id: &#39;round&#39; do
+        element :rect, height: @config.badge_height, width: @config.badge_width,
+                       rx: @config.rounded_edge_radius, fill: @config.background
+      end
+    end
+
+    # rubocop:disable Metrics/AbcSize
+    def svg_title(title)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="http://docs.seattlerb.org/flog/" target="_blank"><b>HighComplexity</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title has a flog score of 25</span>          </div>  </li></ol>
+      element :g, fill: @config.title_color, &#39;text-anchor&#39;: &#39;middle&#39;,
+                  &#39;font-family&#39;: @config.title_font,
+                  &#39;font-size&#39;: @config.title_font_size do |_svg|
+        element :text, @config.title(title),<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.title(title)' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L78" class="js-smell-location">0</a>                  <a href="image.html#L81" class="js-smell-location">1</a>                  </div>  </li></ol>
+                x: @config.badge_middle / 2, y: @config.badge_height - 5,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_height' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_middle / 2' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_middle' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li></ol>
+                fill: &#39;#010101&#39;, &#39;fill-opacity&#39;: &#39;0.3&#39;
+        element :text, @config.title(title),<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.title(title)' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L78" class="js-smell-location">0</a>                  <a href="image.html#L81" class="js-smell-location">1</a>                  </div>  </li></ol>
+                x: @config.badge_middle / 2, y: @config.badge_height - 6<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_height' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_middle / 2' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_title calls '@config.badge_middle' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L79" class="js-smell-location">0</a>                  <a href="image.html#L82" class="js-smell-location">1</a>                  </div>  </li></ol>
+      end
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def svg_value(value)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="http://docs.seattlerb.org/flog/" target="_blank"><b>HighComplexity</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value has a flog score of 29</span>          </div>  </li></ol>
+      element :g, fill: @config.value_color, &#39;text-anchor&#39;: &#39;middle&#39;,
+                  &#39;font-family&#39;: @config.value_font,
+                  &#39;font-size&#39;: @config.value_font_size do |_svg|
+        element :text, value,
+                x: @config.badge_middle / 2 + @config.badge_middle,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle / 2 + @config.badge_middle' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle / 2' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle' 4 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li></ol>
+                y: @config.badge_height - 5,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_height' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L93" class="js-smell-location">0</a>                  <a href="image.html#L97" class="js-smell-location">1</a>                  </div>  </li></ol>
+                fill: &#39;#010101&#39;, &#39;fill-opacity&#39;: &#39;0.3&#39;
+        element :text, value,
+                x: @config.badge_middle / 2 + @config.badge_middle,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle / 2 + @config.badge_middle' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle / 2' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_middle' 4 times</span>              <span>Locations:</span>                  <a href="image.html#L92" class="js-smell-location">0</a>                  <a href="image.html#L96" class="js-smell-location">1</a>                  </div>  </li></ol>
+                y: @config.badge_height - 6<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Image#svg_value calls '@config.badge_height' 2 times</span>              <span>Locations:</span>                  <a href="image.html#L93" class="js-smell-location">0</a>                  <a href="image.html#L97" class="js-smell-location">1</a>                  </div>  </li></ol>
+      end
+    end
+    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='../../assets/javascripts/jquery.min.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/prettify.js'></script>
+    <script src='../../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+    <script src='../../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>

@@ -3,7 +3,8 @@
 [![Gem Version](https://badge.fury.io/rb/repo-small-badge.svg)](https://badge.fury.io/rb/repo-small-badge)
 [![Build Status](https://api.travis-ci.org/MarcGrimme/repo-small-badge.svg?branch=master)](https://secure.travis-ci.org/MarcGrimme/repo-small-badge)
 [![Depfu](https://badges.depfu.com/badges/e794da00404482f66ce7ca05eea9640b/count.svg)](https://depfu.com/github/MarcGrimme/repo-small-badge?project_id=6915)
-![Coverage](https://marcgrimme.github.io/repo-small-badge/badges/coverage_badge_total.svg)
+[![Coverage](https://marcgrimme.github.io/repo-small-badge/badges/coverage_badge_total.svg)](https://marcgrimme.github.io/repo-small-badge/coverage/index.html)
+[![RubyCritic](https://marcgrimme.github.io/repo-small-badge/badges/rubycritic_badge_score.svg)](https://marcgrimme.github.io/repo-small-badge/tmp/rubycritic/overview.html)
 
 *RepoSmalladge* is a gem that can be added to the `Gemfile` and consolidates functionality to produce a badge file.
 The text place and other configurable can be specified at instance time.
