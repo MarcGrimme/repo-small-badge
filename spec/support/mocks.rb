@@ -18,7 +18,7 @@ module TestRepoSmallBadge
 <rect x="60" height="20" width="60" fill="#4c1"/>
 <rect height="20" width="120" fill="url(#smooth)"/>
 </g>
-<g fill="#{title_color}" text-anchor="middle" font-family="#{title_font}" size="#{title_font_size}">
+<g fill="#{title_color}" text-anchor="middle" font-family="#{title_font}" font-size="#{title_font_size}">
 <text x="30" y="15" fill="#010101" fill-opacity="0.3">
 Total
 </text>
@@ -26,7 +26,7 @@ Total
 Total
 </text>
 </g>
-<g fill="#{value_color}" text-anchor="middle" font-family="#{value_font}" size="#{value_font_size}">
+<g fill="#{value_color}" text-anchor="middle" font-family="#{value_font}" font-size="#{value_font_size}">
 <text x="90" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
@@ -52,7 +52,7 @@ Total
 <rect x="100" height="20" width="100" fill="#4c1"/>
 <rect height="20" width="200" fill="url(#smooth)"/>
 </g>
-<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" size="11">
+<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" font-size="11">
 <text x="50" y="15" fill="#010101" fill-opacity="0.3">
 badge Total
 </text>
@@ -60,7 +60,7 @@ badge Total
 badge Total
 </text>
 </g>
-<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" size="11">
+<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" font-size="11">
 <text x="150" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
