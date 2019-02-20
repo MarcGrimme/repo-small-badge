@@ -74,7 +74,7 @@ module RepoSmallBadge
     def svg_title(title)
       element :g, fill: @config.title_color, 'text-anchor': 'middle',
                   'font-family': @config.title_font,
-                  size: @config.title_font_size do |_svg|
+                  'font-size': @config.title_font_size do |_svg|
         element :text, @config.title(title),
                 x: @config.badge_middle / 2, y: @config.badge_height - 5,
                 fill: '#010101', 'fill-opacity': '0.3'
@@ -87,7 +87,7 @@ module RepoSmallBadge
     def svg_value(value)
       element :g, fill: @config.value_color, 'text-anchor': 'middle',
                   'font-family': @config.value_font,
-                  size: @config.value_font_size do |_svg|
+                  'font-size': @config.value_font_size do |_svg|
         element :text, value,
                 x: @config.badge_middle / 2 + @config.badge_middle,
                 y: @config.badge_height - 5,
