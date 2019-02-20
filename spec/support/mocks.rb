@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module TestRepoSmallBadge
-  # rubocop:disable Metrics/MethodLength, Metrics/LineLength
-  def default_svg_string
+  # rubocop:disable Metrics/MethodLength,Metrics/LineLength,Metrics/ParameterLists
+  def rounded_svg_string(title_color: '#fff', title_font: 'Verdana,sans-serif', title_font_size: 11,
+                         value_color: '#fff', value_font: 'Verdana,sans-serif', value_font_size: 11)
     %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.0" height="20" width="100%">
 
 <linearGradient id="smooth" x2="0" y2="100%">
@@ -17,13 +18,15 @@ module TestRepoSmallBadge
 <rect x="60" height="20" width="60" fill="#4c1"/>
 <rect height="20" width="120" fill="url(#smooth)"/>
 </g>
-<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" size="11">
+<g fill="#{title_color}" text-anchor="middle" font-family="#{title_font}" size="#{title_font_size}">
 <text x="30" y="15" fill="#010101" fill-opacity="0.3">
 Total
 </text>
 <text x="30" y="14">
 Total
 </text>
+</g>
+<g fill="#{value_color}" text-anchor="middle" font-family="#{value_font}" size="#{value_font_size}">
 <text x="90" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
@@ -56,6 +59,8 @@ badge Total
 <text x="50" y="14">
 badge Total
 </text>
+</g>
+<g fill="#fff" text-anchor="middle" font-family="Verdana,sans-serif" size="11">
 <text x="150" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
@@ -65,5 +70,5 @@ badge Total
 </g>
 </svg>)
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/LineLength
+  # rubocop:enable Metrics/MethodLength,Metrics/LineLength,Metrics/ParameterLists
 end
