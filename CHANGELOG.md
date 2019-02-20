@@ -7,7 +7,6 @@
 
 # 0.2.3
 
-* Support rubycritic
 * More flexibility for configuring the different font colors and sizes.
 
 # 0.2.2
