@@ -14,8 +14,7 @@ module RepoSmallBadge
       @config = Configuration.new(config)
       super(template: :html, contentScriptType: 'text/ecmascript',
             contentStyleType: 'text/css', preserveAspectRatio: 'xMidYMid meet',
-            'xmlns:xlink': 'http://www.w3.org/1999/xlink',
-            xmlns: 'http://www.w3.org/2000/svg', version: '1.0',
+            version: '1.0',
             height: @config.badge_height, width: @config.badge_width)
     end
 

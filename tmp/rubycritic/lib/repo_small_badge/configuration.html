@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8">
@@ -18,7 +17,7 @@
   <body>
     <header class="navbar navbar-default navbar-fixed-top">
       <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
-      <a href="../../overview.html"><img src="../../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+      <a href="../../overview.html"><img src="../../assets/images/logo.png" alt="Ruby Critic Logo" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
       
     </header>
     <div id="wrapper">
@@ -99,12 +98,12 @@
 
 module RepoSmallBadge
   # Hidden class to handle the interface to configuration
-  class Configuration<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has at least 20 methods</span>          </div>  </li></ol>
+  class Configuration<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has at least 20 methods</span>          </div>  </li></ol>
     def initialize(config_hash)
       @config = config_hash
     end
 
-    def merge!(new_config)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has prima donna method 'merge!'</span>          </div>  </li></ol>
+    def merge!(new_config)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Missing-Safe-Method.md" target="_blank"><b>MissingSafeMethod</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has missing safe method 'merge!'</span>          </div>  </li></ol>
       @config.merge!(new_config)
     end
 
@@ -179,11 +178,11 @@ module RepoSmallBadge
     end
 
     def title(suffix)
-      prefix = @config.fetch(:title_prefix, &#39;&#39;)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
+      prefix = @config.fetch(:title_prefix, &#39;&#39;)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
       if prefix.to_s.empty?
         suffix
       else
-        &quot;#{@config.fetch(:title_prefix, &#39;&#39;)} #{suffix}&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
+        &quot;#{@config.fetch(:title_prefix, &#39;&#39;)} #{suffix}&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
       end
     end
 
@@ -200,7 +199,7 @@ end
       </div>
     </div>
 
-    <!-- Javascripts -->
+    <!-- JavaScripts -->
     <script src='../../assets/javascripts/jquery.min.js'></script>
     <script src='../../assets/javascripts/jquery.tablesorter.min.js'></script>
     <script src='../../assets/javascripts/jquery.scrollTo.min.js'></script>

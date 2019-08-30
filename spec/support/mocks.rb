@@ -4,7 +4,10 @@ module TestRepoSmallBadge
   # rubocop:disable Metrics/MethodLength,Metrics/LineLength,Metrics/ParameterLists
   def rounded_svg_string(title_color: '#fff', title_font: 'Verdana,sans-serif', title_font_size: 11,
                          value_color: '#fff', value_font: 'Verdana,sans-serif', value_font_size: 11)
-    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.0" height="20" width="120">
+    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" version="1.0" height="20" width="120"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
 
 <linearGradient id="smooth" x2="0" y2="120">
 <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -34,11 +37,15 @@ Total
 100%
 </text>
 </g>
+
 </svg>)
   end
 
   def not_rounded_svg_string
-    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.0" height="20" width="200">
+    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" version="1.0" height="20" width="200"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
 
 <linearGradient id="smooth" x2="0" y2="200">
 <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -68,6 +75,7 @@ badge Total
 100%
 </text>
 </g>
+
 </svg>)
   end
   # rubocop:enable Metrics/MethodLength,Metrics/LineLength,Metrics/ParameterLists
