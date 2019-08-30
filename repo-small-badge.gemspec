@@ -17,7 +17,7 @@ Examples rubycritic and simplecov.)
 
   s.rubyforge_project = 'repo-small-badge'
 
-  s.add_dependency 'victor', '~> 0.2' # to create the svg
+  s.add_dependency 'victor', '~> 0.2.8' # to create the svg
   s.add_development_dependency 'rake', '~> 12'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.65'
