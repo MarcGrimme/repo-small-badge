@@ -20,7 +20,7 @@ Examples rubycritic and simplecov.)
   s.add_dependency 'victor', '~> 0.2' # to create the svg
   s.add_development_dependency 'rake', '~> 12'
   s.add_development_dependency 'rspec', '~> 3.8'
-  s.add_development_dependency 'rubocop', '~> 0'
+  s.add_development_dependency 'rubocop', '~> 0.65'
   s.add_development_dependency 'rubycritic', '~> 4.1'
   s.add_development_dependency 'rubycritic-small-badge', '~> 0'
   s.add_development_dependency 'simplecov', '~> 0.16'
