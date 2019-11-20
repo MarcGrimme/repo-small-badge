@@ -75,10 +75,10 @@ module RepoSmallBadge
                   'font-family': @config.title_font,
                   'font-size': @config.title_font_size do |_svg|
         element :text, @config.title(title),
-                x: @config.badge_middle / 2, y: @config.badge_height - 5,
+                x: @config.title_middle, y: @config.badge_height - 5,
                 fill: '#010101', 'fill-opacity': '0.3'
         element :text, @config.title(title),
-                x: @config.badge_middle / 2, y: @config.badge_height - 6
+                x: @config.title_middle, y: @config.badge_height - 6
       end
     end
 
@@ -88,11 +88,11 @@ module RepoSmallBadge
                   'font-family': @config.value_font,
                   'font-size': @config.value_font_size do |_svg|
         element :text, value,
-                x: @config.badge_middle / 2 + @config.badge_middle,
+                x: @config.value_middle,
                 y: @config.badge_height - 5,
                 fill: '#010101', 'fill-opacity': '0.3'
         element :text, value,
-                x: @config.badge_middle / 2 + @config.badge_middle,
+                x: @config.value_middle,
                 y: @config.badge_height - 6
       end
     end

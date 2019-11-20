@@ -3,37 +3,38 @@
 module TestRepoSmallBadge
   # rubocop:disable Metrics/MethodLength,Metrics/LineLength,Metrics/ParameterLists
   def rounded_svg_string(title_color: '#fff', title_font: 'Verdana,sans-serif', title_font_size: 11,
-                         value_color: '#fff', value_font: 'Verdana,sans-serif', value_font_size: 11)
-    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" version="1.0" height="20" width="120"
+                         value_color: '#fff', value_font: 'Verdana,sans-serif', value_font_size: 11,
+                         width: 120, middle: 60)
+    %(<svg contentScriptType="text/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMidYMid meet" version="1.0" height="20" width="#{width}"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink">
 
 
-<linearGradient id="smooth" x2="0" y2="120">
+<linearGradient id="smooth" x2="0" y2="#{width}">
 <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
 <stop offset="1" stop-opacity=".1"/>
 </linearGradient>
 <clipPath id="round">
-<rect height="20" width="120" rx="3" fill="#fff"/>
+<rect height="20" width="#{width}" rx="3" fill="#fff"/>
 </clipPath>
 <g clip-path="url(#round)">
-<rect height="20" width="60" fill="#555"/>
-<rect x="60" height="20" width="60" fill="#4c1"/>
-<rect height="20" width="120" fill="url(#smooth)"/>
+<rect height="20" width="#{middle}" fill="#555"/>
+<rect x="#{middle}" height="20" width="#{middle}" fill="#4c1"/>
+<rect height="20" width="#{width}" fill="url(#smooth)"/>
 </g>
 <g fill="#{title_color}" text-anchor="middle" font-family="#{title_font}" font-size="#{title_font_size}">
-<text x="30" y="15" fill="#010101" fill-opacity="0.3">
+<text x="#{middle / 2}" y="15" fill="#010101" fill-opacity="0.3">
 Total
 </text>
-<text x="30" y="14">
+<text x="#{middle / 2}" y="14">
 Total
 </text>
 </g>
 <g fill="#{value_color}" text-anchor="middle" font-family="#{value_font}" font-size="#{value_font_size}">
-<text x="90" y="15" fill="#010101" fill-opacity="0.3">
+<text x="#{middle + (width - middle) / 2}" y="15" fill="#010101" fill-opacity="0.3">
 100%
 </text>
-<text x="90" y="14">
+<text x="#{middle + (width - middle) / 2}" y="14">
 100%
 </text>
 </g>
