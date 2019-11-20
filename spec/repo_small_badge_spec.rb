@@ -45,16 +45,18 @@ describe RepoSmallBadge::Image do
       context 'with different middle' do
         subject do
           described_class
-          .new(badge_width: 250, badge_middle: 190)
+            .new(badge_width: 250, badge_middle: 190)
         end
+
+        let(:svg) { rounded_svg_string(width: 250, middle: 190) }
 
         it 'will write a file' do
           allow(File).to receive(:write)
-            .with('./badge_total.svg', rounded_svg_string(width: 250, middle: 190)).and_return(true)
+            .with('./badge_total.svg', svg)
+            .and_return(true)
           expect(subject.badge('total', 'Total', '100%'))
             .to be_truthy
         end
-
       end
     end
   end

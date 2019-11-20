@@ -69,7 +69,6 @@ module RepoSmallBadge
       end
     end
 
-    # rubocop:disable Metrics/AbcSize
     def svg_title(title)
       element :g, fill: @config.title_color, 'text-anchor': 'middle',
                   'font-family': @config.title_font,
@@ -97,6 +96,5 @@ module RepoSmallBadge
       end
     end
     # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
   end
 end
