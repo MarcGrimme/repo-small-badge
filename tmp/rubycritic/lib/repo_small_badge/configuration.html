@@ -33,6 +33,9 @@
           <li class="sidebar-item">
             <a href="../../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
           </li>
+          <li class="sidebar-item">
+            <a href="../../simple_cov_index.html" class="project-nav-item coverage-index-nav"><i class="fa fa-umbrella"></i>Coverage</a>
+          </li>
         </ul>
       </aside>
       <!-- /#sidebar-wrapper -->
@@ -44,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-02-20 09:14:31 +0100'>2019-02-20 09:14:31 +0100</time>
+          Updated <time class='js-timeago' datetime='2020-05-03 03:16:30 -0600'>2020-05-03 03:16:30 -0600</time>
         
       </span>
     </div>
@@ -59,21 +62,21 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-1">
-            <div class="rating a big">
-              A
+            <div class="rating b big">
+              B
             </div>
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">97</span><small> lines of codes</small></div>
-              <div><span class="metric">20</span><small> methods</small></div>
+              <div><span class="metric">105</span><small> lines of codes</small></div>
+              <div><span class="metric">22</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">2.0</span><small> complexity/method</small></div>
-              <div><span class="metric">1</span><small> churn</small></div>
+              <div><span class="metric">2.5</span><small> complexity/method</small></div>
+              <div><span class="metric">2</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">40.25</span><small> complexity</small></div>
+              <div><span class="metric">54.2</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -98,7 +101,7 @@
 
 module RepoSmallBadge
   # Hidden class to handle the interface to configuration
-  class Configuration<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has at least 20 methods</span>          </div>  </li></ol>
+  class Configuration<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration has at least 22 methods</span>          </div>  </li></ol>
     def initialize(config_hash)
       @config = config_hash
     end
@@ -168,7 +171,15 @@ module RepoSmallBadge
     end
 
     def badge_middle
-      badge_width / 2
+      @config.fetch(:badge_middle, badge_width / 2).to_i
+    end
+
+    def title_middle
+      badge_middle / 2
+    end
+
+    def value_middle
+      badge_middle + (badge_width - badge_middle) / 2
     end
 
     def filename(suffix = &#39;&#39;)
@@ -178,11 +189,11 @@ module RepoSmallBadge
     end
 
     def title(suffix)
-      prefix = @config.fetch(:title_prefix, &#39;&#39;)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
+      prefix = @config.fetch(:title_prefix, &#39;&#39;)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L93" class="js-smell-location">0</a>                  <a href="configuration.html#L97" class="js-smell-location">1</a>                  </div>  </li></ol>
       if prefix.to_s.empty?
         suffix
       else
-        &quot;#{@config.fetch(:title_prefix, &#39;&#39;)} #{suffix}&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L85" class="js-smell-location">0</a>                  <a href="configuration.html#L89" class="js-smell-location">1</a>                  </div>  </li></ol>
+        &quot;#{@config.fetch(:title_prefix, &#39;&#39;)} #{suffix}&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>RepoSmallBadge::Configuration#title calls '@config.fetch(:title_prefix, '')' 2 times</span>              <span>Locations:</span>                  <a href="configuration.html#L93" class="js-smell-location">0</a>                  <a href="configuration.html#L97" class="js-smell-location">1</a>                  </div>  </li></ol>
       end
     end
 

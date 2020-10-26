@@ -4,6 +4,7 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'repo_small_badge/version'
 
 Gem::Specification.new do |s|
+  s.required_ruby_version = '>=2.5.0'
   s.name        = 'repo-small-badge'
   s.version     = RepoSmallBadge::VERSION
   s.platform    = Gem::Platform::RUBY
@@ -17,10 +18,10 @@ Examples rubycritic and simplecov.)
 
   s.rubyforge_project = 'repo-small-badge'
 
-  s.add_dependency 'victor', '~> 0.2.8' # to create the svg
+  s.add_dependency 'victor', '~> 0.3.0' # to create the svg
   s.add_development_dependency 'rake', '~> 13'
   s.add_development_dependency 'rspec', '~> 3.8'
-  s.add_development_dependency 'rubocop', '~> 0.65'
+  s.add_development_dependency 'rubocop', '~> 1.0'
   s.add_development_dependency 'rubycritic', '~> 4.1'
   s.add_development_dependency 'rubycritic-small-badge', '~> 0'
   s.add_development_dependency 'simplecov', '~> 0.16'

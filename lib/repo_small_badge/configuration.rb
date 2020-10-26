@@ -72,7 +72,15 @@ module RepoSmallBadge
     end
 
     def badge_middle
-      badge_width / 2
+      @config.fetch(:badge_middle, badge_width / 2).to_i
+    end
+
+    def title_middle
+      badge_middle / 2
+    end
+
+    def value_middle
+      badge_middle + (badge_width - badge_middle) / 2
     end
 
     def filename(suffix = '')

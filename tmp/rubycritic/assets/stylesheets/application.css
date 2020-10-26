@@ -221,7 +221,7 @@ header {
 }
 .sidebar-nav li a:hover {color:#9B111D;}
 .sidebar-nav li a i,.sidebar-nav li a img {font-size:18px;display:block;margin:0 auto;}
-/*End of Layout Stlyes*/
+/*End of Layout Styles*/
 
 .fadeIn {-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -277,10 +277,10 @@ header {
   color: #4e4d4d;
   font-weight: bold;
 }
-.table.code th:nth-child(1) {
+.table.code th.center {
   text-align: center;
 }
-.table.code th:nth-child(2) {
+.table.code th.left {
   text-align: left;
 }
 .table.code th {
@@ -291,10 +291,10 @@ header {
 .table td {
   color: #777575;
 }
-.table.code td:nth-child(1) {
+.table.code td.center {
   text-align: center;
 }
-.table.code td:nth-child(2) {
+.table.code td.left {
   text-align: left;
 }
 .table.code td {
