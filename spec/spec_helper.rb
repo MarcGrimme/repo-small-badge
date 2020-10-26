@@ -3,12 +3,12 @@
 require 'simplecov'
 require 'byebug'
 
-SimpleCov.start do
-  module SimpleCovSmallBadge
-    class Formatter
-    end
+module SimpleCovSmallBadge
+  class Formatter
   end
+end
 
+SimpleCov.start do
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
     [
       SimpleCov::Formatter::HTMLFormatter,
@@ -25,7 +25,7 @@ require 'simplecov_small_badge'
 require 'rubygems'
 require 'bundler/setup'
 
-Dir[File.join('./spec/support/*.rb')].each { |f| require f }
+Dir[File.join('./spec/support/*.rb')].sort.each { |f| require f }
 
 RSpec.configure do |config|
   # some (optional) config here
