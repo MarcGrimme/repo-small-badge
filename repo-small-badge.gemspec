@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'repo_small_badge/version'
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = '>=3.0.0'
+  s.required_ruby_version = '>=3.2'
   s.name        = 'repo-small-badge'
   s.version     = RepoSmallBadge::VERSION
   s.platform    = Gem::Platform::RUBY
