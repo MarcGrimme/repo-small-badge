@@ -22,7 +22,7 @@ Examples rubycritic and simplecov.)
   s.add_development_dependency 'rake', '~> 13'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 1.0'
-  s.add_development_dependency 'rubycritic', '~> 4.1'
+  s.add_development_dependency 'rubycritic', '~> 5.0'
   s.add_development_dependency 'rubycritic-small-badge', '~> 0'
   s.add_development_dependency 'simplecov', '~> 0.18'
   s.add_development_dependency 'simplecov-small-badge', '~> 0.2.2'
